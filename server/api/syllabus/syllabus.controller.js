@@ -1,16 +1,16 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /api/employees              ->  index
- * POST    /api/employees              ->  create
- * GET     /api/employees/:id          ->  show
- * PUT     /api/employees/:id          ->  update
- * DELETE  /api/employees/:id          ->  destroy
+ * GET     /api/syllabuses              ->  index
+ * POST    /api/syllabuses              ->  create
+ * GET     /api/syllabuses/:id          ->  show
+ * PUT     /api/syllabuses/:id          ->  update
+ * DELETE  /api/syllabuses/:id          ->  destroy
  */
 
 'use strict';
 
 import _ from 'lodash';
-import Employee from './employee.model';
+import Syllabus from './syllabus.model';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -59,43 +59,43 @@ function handleError(res, statusCode) {
   };
 }
 
-// Gets a list of Employees
+// Gets a list of Syllabuss
 export function index(req, res) {
-  Employee.findAsync()
+  Syllabus.findAsync()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Gets a single Employee from the DB
+// Gets a single Syllabus from the DB
 export function show(req, res) {
-  Employee.findByIdAsync(req.params.id)
+  Syllabus.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Creates a new Employee in the DB
+// Creates a new Syllabus in the DB
 export function create(req, res) {
-  Employee.createAsync(req.body)
+  Syllabus.createAsync(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }
 
-// Updates an existing Employee in the DB
+// Updates an existing Syllabus in the DB
 export function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  Employee.findByIdAsync(req.params.id)
+  Syllabus.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(saveUpdates(req.body))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Deletes a Employee from the DB
+// Deletes a Syllabus from the DB
 export function destroy(req, res) {
-  Employee.findByIdAsync(req.params.id)
+  Syllabus.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
     .catch(handleError(res));

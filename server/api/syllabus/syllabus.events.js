@@ -1,15 +1,15 @@
 /**
- * Thing model events
+ * Syllabus model events
  */
 
 'use strict';
 
 import {EventEmitter} from 'events';
-var Thing = require('./thing.model');
-var ThingEvents = new EventEmitter();
+var Syllabus = require('./syllabus.model');
+var SyllabusEvents = new EventEmitter();
 
 // Set max event listeners (0 == unlimited)
-ThingEvents.setMaxListeners(0);
+SyllabusEvents.setMaxListeners(0);
 
 // Model events
 var events = {
@@ -20,14 +20,14 @@ var events = {
 // Register the event emitter to the model events
 for (var e in events) {
   var event = events[e];
-  Thing.schema.post(e, emitEvent(event));
+  Syllabus.schema.post(e, emitEvent(event));
 }
 
 function emitEvent(event) {
   return function(doc) {
-    ThingEvents.emit(event + ':' + doc._id, doc);
-    ThingEvents.emit(event, doc);
+    SyllabusEvents.emit(event + ':' + doc._id, doc);
+    SyllabusEvents.emit(event, doc);
   }
 }
 
-export default ThingEvents;
+export default SyllabusEvents;
