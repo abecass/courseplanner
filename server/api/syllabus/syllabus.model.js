@@ -1,6 +1,7 @@
 'use strict';
-/*
-var mongoose = require('bluebird').promisifyAll(require('mongoose'));
+
+var mongoose = require('bluebird').promisifyAll(require('mongoose')),
+	Schema = mongoose.Schema;
 
 var SyllabusSchema = new mongoose.Schema({
 	academy: String,
@@ -9,7 +10,7 @@ var SyllabusSchema = new mongoose.Schema({
 	education: String,
 	lecturer: String,
 	owner: {
-		type: Schema.ObjectID,
+		type: Schema.ObjectId,
 		ref: 'User'
 	},
 	objective: String,
@@ -26,4 +27,3 @@ var SyllabusSchema = new mongoose.Schema({
 });
 
 export default mongoose.model('Syllabus', SyllabusSchema);
-*/

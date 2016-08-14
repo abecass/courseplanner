@@ -8,9 +8,9 @@ class MainController {
     this.$http = $http;
     this.awesomeThings = [];
 
-    $http.get('/api/things').then(response => {
-      this.awesomeThings = response.data;
-      socket.syncUpdates('thing', this.awesomeThings);
+    $http.get('/api/syllabuses').then(response => {
+      this.syllabuses = response.data;
+      socket.syncUpdates('syllabuses', this.syllabuses);
     });
 
     $scope.$on('$destroy', function() {
